@@ -155,7 +155,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "electron": "34.2.0",
-    "electron-builder": "26.0.0-alpha.8",
+    "electron-builder": "26.0.12",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "10.1.1",
@@ -224,7 +224,9 @@
     },
     "win": {
       "asarUnpack": "node_modules/spellchecker/vendor/hunspell_dictionaries",
-      "publisherName": "Oxen Labs",
+      "signtoolOptions": {
+        "publisherName": "Session Technology Foundation"
+      },
       "verifyUpdateCodeSignature": false,
       "icon": "build/icon.ico",
       "target": [
