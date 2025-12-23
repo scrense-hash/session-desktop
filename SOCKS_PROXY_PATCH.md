@@ -11,6 +11,7 @@ This patch adds full SOCKS5 proxy support to Session Desktop, allowing all appli
 - ✅ Agent caching for performance optimization
 - ✅ Detailed error logging for debugging
 - ✅ UI for proxy configuration in Settings
+- ✅ Auto-updater disabled when proxy is enabled (prevents traffic leaks)
 
 ## Changes Summary
 
@@ -40,6 +41,10 @@ This patch adds full SOCKS5 proxy support to Session Desktop, allowing all appli
 - Certificate pinning continues to work through SOCKS proxy
 - `rejectUnauthorized` is only set to `false` if it was already disabled in the original agent
 - No security regression for production seed nodes
+- **Auto-updater is disabled when proxy is enabled** to prevent traffic leaks
+  - electron-updater uses native HTTP clients that bypass our proxy configuration
+  - Users must update manually when using proxy mode
+  - This ensures 100% traffic routing through proxy with no leaks
 
 ## Installation
 
@@ -75,6 +80,12 @@ sudo dpkg -i release/session-desktop-linux-amd64-1.17.5.deb
    - **Username** (optional): For authenticated proxies
    - **Password** (optional): For authenticated proxies
 4. Click **Save**
+
+**⚠️ Important Notes:**
+- **Auto-updates are disabled** when proxy is enabled to prevent traffic leaks
+- To update Session Desktop while using proxy, download new version manually from GitHub Releases
+- All application traffic (messages, media, metadata) routes through proxy
+- Disable proxy to re-enable auto-updates
 
 ## Testing
 
